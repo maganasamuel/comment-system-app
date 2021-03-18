@@ -1,95 +1,114 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <script type="text/javascript" src="{{ asset('js/app.js') }}" defer>
+    </script>
 
-            .full-height {
-                height: 100vh;
-            }
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+        rel="stylesheet">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <style>
+        body {
+            font-family: 'Inter' !important;
+        }
 
-            .position-ref {
-                position: relative;
-            }
+    </style>
+</head>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+<body class="font-sans antialiased">
+    <div id="app" class="h-screen flex overflow-hidden bg-white">
+        <div class="flex flex-col w-0 flex-1 overflow-hidden">
+            <div
+                class="relative z-10 flex-shrink-0 flex h-16 bg-gray-800 border-b border-gray-200">
+                <nav class="bg-gray-800">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div
+                            class="relative flex items-center justify-between h-16">
+                            <div
+                                class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                                <div class="flex-shrink-0 flex items-center">
+                                    <span
+                                        class="text-white text-lg font-bold">Comment
+                                        System App</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
             </div>
+
+            <main class="flex-1 relative overflow-y-auto focus:outline-none"
+                tabindex="-1">
+                <div
+                    class="max-w-7xl mx-auto py-8 xl:py-10 px-4 sm:px-6 lg:px-8">
+                    <div>
+                        <div>
+                            <div
+                                class="md:flex md:items-center md:justify-between md:space-x-4 xl:border-b xl:pb-6">
+                                <div>
+                                    <h1
+                                        class="text-2xl font-bold text-gray-900">
+                                        ARIA attribute misspelled</h1>
+                                </div>
+                            </div>
+                            <div class="py-3 xl:pt-6 xl:pb-0">
+                                <h2 class="sr-only">Description</h2>
+                                <div class="prose max-w-none">
+                                    <p>
+                                        Lorem ipsum dolor sit amet
+                                        consectetur adipisicing elit.
+                                        Expedita, hic? Commodi cumque
+                                        similique id tempora molestiae
+                                        deserunt at suscipit, dolor
+                                        voluptatem, numquam, harum
+                                        consequatur laboriosam voluptas
+                                        tempore aut voluptatum alias?
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            Tempor ultrices proin nunc
+                                            fames nunc ut auctor vitae
+                                            sed. Eget massa parturient
+                                            vulputate fermentum id
+                                            facilisis nam pharetra.
+                                            Aliquet leo tellus.
+                                        </li>
+                                        <li>
+                                            Turpis ac nunc adipiscing
+                                            adipiscing metus tincidunt
+                                            senectus tellus.
+                                        </li>
+                                        <li>
+                                            Semper interdum porta sit
+                                            tincidunt. Dui suspendisse
+                                            scelerisque amet metus eget
+                                            sed. Ut tellus in sed
+                                            dignissim.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <comment-section></comment-section>
+                </div>
+            </main>
         </div>
-    </body>
+    </div>
+
+
+
+
+</body>
+
 </html>
