@@ -12,6 +12,14 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
+    public function commentParameterRouteValidationProvider()
+    {
+        return [
+            'index' => ['GET', 'api.comments.index', 1],
+            'index' => ['POST', 'api.comments.store', 1],
+        ];
+    }
+
     public function userNameInputValidationProvider()
     {
         return [
@@ -29,6 +37,24 @@ class CommentTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider commentParameterRouteValidationProvider
+     *
+     * @param mixed $method
+     * @param mixed $route
+     * @param mixed $parameter
+     *
+     * @test */
+    public function cannot_access_pages_if_comment_parameter_does_not_exist($method, $route, $parameter)
+    {
+        // Arrange
+        // Act
+        $response = $this->json($method, route($route, ['comment' => $parameter]));
+
+        // Assert
+        $response->assertStatus(404);
+    }
+
     /** @test */
     public function can_fetch_comments()
     {
@@ -38,17 +64,6 @@ class CommentTest extends TestCase
 
         // Assert
         $response->assertStatus(200);
-    }
-
-    /** @test */
-    public function cannot_post_comment_if_parent_comment_does_not_exist()
-    {
-        // Arrange
-        // Act
-        $response = $this->json('POST', route('api.comments.store', ['comment' => 1]));
-
-        // Assert
-        $response->assertStatus(404);
     }
 
     /** @test */
@@ -97,6 +112,8 @@ class CommentTest extends TestCase
         $response = $this->json('POST', route('api.comments.store'), $data);
 
         // Assert
-        $response->assertStatus(200);
+        $response->assertStatus(201);
+
+        $this->assertDatabaseHas('comments', $data);
     }
 }
