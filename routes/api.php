@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::name('api.')->group(function () {
     Route::prefix('comments')->name('comments.')->group(function () {
-        Route::get('/', 'Api\CommentController@index')->name('index');
+        Route::get('/{comment?}', 'Api\CommentController@index')->name('index');
         Route::post('/{comment?}', 'Api\CommentController@store')->name('store');
     });
 });
