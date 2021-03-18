@@ -22,5 +22,8 @@ Vue.component('comment-item', require('./components/comments/CommentItem.vue'));
 Vue.component('reply-comment', require('./components/comments/ReplyComment.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        maxCommentLayer: 3,
+    }
 });
