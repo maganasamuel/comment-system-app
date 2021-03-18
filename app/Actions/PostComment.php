@@ -28,8 +28,13 @@ class PostComment
 
         if ($comment) {
             $data['parent_id'] = $comment->id;
+            $data['layer'] = $comment->layer + 1;
         }
 
-        return Comment::create($data);
+        $createdComment = Comment::create($data);
+
+        $createdComment->refresh();
+
+        return $createdComment;
     }
 }
